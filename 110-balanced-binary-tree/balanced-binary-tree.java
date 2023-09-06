@@ -14,6 +14,7 @@
  * }
  */
 class Solution {
+    //Top-down recursion - calculating height for each node and checking diff
     private int height(TreeNode root) {
         if(root == null) {
             return -1;
@@ -22,6 +23,8 @@ class Solution {
     }
 
     public boolean isBalanced(TreeNode root) {
+        //Time - O(nlog n) 
+        //Space - O(n) due to n stacks
         if(root == null) {
             return true;
         }
