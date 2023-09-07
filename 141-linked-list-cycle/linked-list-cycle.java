@@ -10,6 +10,7 @@
  * }
  */
 public class Solution {
+    //floyd's cycle finding algo or Tortoise-Hare algo
     public boolean hasCycle(ListNode head) {
         if(head == null) {
             return false;
