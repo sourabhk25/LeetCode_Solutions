@@ -21,26 +21,26 @@ class Node {
 class Solution {
     public Node cloneGraph(Node node) {
         //BFS
-        if(node == null) {
+        if(node == null) {  //return node if it is null
             return node;
         }
 
-        HashMap<Node, Node> visited = new HashMap<>();
-        LinkedList<Node> queue = new LinkedList<>();
-        queue.add(node);
-        visited.put(node, new Node(node.val, new ArrayList<>()));
-        while(!queue.isEmpty()) {
-            Node n = queue.remove();
-            for(Node neighbor: n.neighbors) {
-                if(!visited.containsKey(neighbor)) {
-                    visited.put(neighbor, new Node(neighbor.val, new ArrayList<>()));
-                    queue.add(neighbor);
+        HashMap<Node, Node> visited = new HashMap<>();  //create hashmap for storing visited nodes and their clones
+        LinkedList<Node> queue = new LinkedList<>();    //queue for BFS
+        queue.add(node);    //add given node as start point
+        visited.put(node, new Node(node.val, new ArrayList<>()));   //add given node and its clone in map
+        while(!queue.isEmpty()) {   //loop till queue is not empty
+            Node n = queue.remove();    //remove front of queue
+            for(Node neighbor: n.neighbors) {   //loop through front node's neighbors
+                if(!visited.containsKey(neighbor)) {    //if neighbor is not visited
+                    visited.put(neighbor, new Node(neighbor.val, new ArrayList<>()));   //add neighbor and its clone to map
+                    queue.add(neighbor);    //add neighbor to queue
                 }
 
-                visited.get(n).neighbors.add(visited.get(neighbor));
+                visited.get(n).neighbors.add(visited.get(neighbor));    //add clone of neighbors to neighbor list
             }
         }
 
-        return visited.get(node);
+        return visited.get(node);   //return clone of node
     }
 }
