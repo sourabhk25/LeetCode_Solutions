@@ -16,11 +16,12 @@ class TimeMap {
         if(!hmap.containsKey(key)) {    //if key doesn't exist in hmap
             return "";  
         }
-        Integer timeKey = hmap.get(key).floorKey(timestamp);    //search timestamp value
-        if(timeKey == null) {
+        TreeMap<Integer, String> tmap = hmap.get(key);
+        Integer prevTime = tmap.floorKey(timestamp);    //search timestamp value
+        if(prevTime == null) {
             return "";
         } else {
-            return hmap.get(key).get(timeKey);  //return value at floorKey
+            return tmap.get(prevTime);  //return value at prevTime
         }
 
     }
