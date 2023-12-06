@@ -1,26 +1,44 @@
 class TimeMap {
-    HashMap<String, TreeMap<Integer, String>> hmap; //TreeMap used to get sorted map according to timestamp
+    HashMap<String, ArrayList<Pair<Integer, String>>> hmap; //ArrayList used here because it is mentioned that timestamps will be in sorted order
+    //we will implement our own binary search
     
-    public TimeMap() {
+    public TimeMap() {  //constructor
         hmap = new HashMap<>();
     }
     
-    public void set(String key, String value, int timestamp) {
+    public void set(String key, String value, int timestamp) {  //set function
         if(!hmap.containsKey(key)) {
-            hmap.put(key, new TreeMap<>()); //create bucket for a new key  
+            hmap.put(key, new ArrayList<>()); //create bucket for a new key  
         }
-        hmap.get(key).put(timestamp, value);    //add timestamp and value to bucket
+        hmap.get(key).add(new Pair(timestamp, value));    //add timestamp and value to bucket
     }
     
-    public String get(String key, int timestamp) {
-        if(hmap.containsKey(key)) { //check if hmap contains key or not
-            TreeMap<Integer, String> tmap = hmap.get(key);  //get treemap for key
-            Integer prevTime = tmap.floorKey(timestamp);    //binary search using floorKey
-            if(prevTime != null) {  //if found
-                return tmap.get(prevTime);  //return value at prevKey
+    public String get(String key, int timestamp) {  //get function
+        if(!hmap.containsKey(key)) {    //return "" if key not found in hmap
+            return "";
+        }
+        
+        if(timestamp < hmap.get(key).get(0).getKey()) {
+            return "";  //case for timestamp is less than lowest timestamp value in map
+        }
+
+        //binary search
+        int low = 0;
+        int high = hmap.get(key).size();    //did size() and not size()-1 because high will store the index of found key
+        while(low < high) {
+            int mid = low + (high - low) / 2;
+            if(hmap.get(key).get(mid).getKey() <= timestamp) {
+                low = mid + 1;
+            } else {
+                high = mid;
             }
         }
-        return "";  //return empty string for key not found or value not found cases
+
+        if(high == 0) { //means no timestamp is present before target one
+            return "";
+        }
+
+        return hmap.get(key).get(high - 1).getValue();
     }
 }
 
