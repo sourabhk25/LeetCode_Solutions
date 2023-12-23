@@ -8,7 +8,7 @@ class Solution {
         int rightmax = height[n - 1];   //max height from right
         int ans = 0;    //ans variable
         
-        while(left <= right) {  //loop till left and right don't cross each other
+        while(left <= right) {  //loop till left and right cross each other
             //check which side has minimum height
             if(leftmax < rightmax) {    //if left side has smaller 
                 if(height[left] > leftmax) {    //check left bar height is greater than current leftmax
