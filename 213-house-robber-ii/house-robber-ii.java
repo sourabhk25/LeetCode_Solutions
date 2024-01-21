@@ -20,12 +20,12 @@ class Solution {
         if(n == 0)  return 0;   //return 0 if empty input array
         if(n == 1)  return nums[0]; //return only element if array has 1 element
         int[] first = new int[n - 1];   //array to store money from 1 to n-1 house 
-        int[] second = new int[n - 1];  //array to store money from 2 to n house 
+        int[] last = new int[n - 1];  //array to store money from 2 to n house 
         for(int i = 0; i < n; i++) {    //loop to add proper values to input array
             if(i != n - 1)  first[i] = nums[i]; 
-            if(i != 0)  second[i - 1] = nums[i];
+            if(i != 0)  last[i - 1] = nums[i];
         }
 
-        return Math.max(houseRobber_I(first), houseRobber_I(second));   //return max of 2 answers
+        return Math.max(houseRobber_I(first), houseRobber_I(last));   //return max of 2 answers
     }
 }
