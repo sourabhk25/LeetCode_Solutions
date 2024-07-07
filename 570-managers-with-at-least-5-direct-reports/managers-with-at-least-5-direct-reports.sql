@@ -6,4 +6,4 @@ JOIN
 FROM Employee
 GROUP BY ManagerId
 HAVING COUNT(ManagerId) >= 5) as e
-WHERE m.id = e.ManagerId;
+ON m.id = e.ManagerId;
