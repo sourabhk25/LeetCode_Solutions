@@ -10,7 +10,7 @@ class Solution {
         //now go through array again, find remainder again
         //if remainder is 0 then check if count of these nos is even if not return false
         //else if count of rem and count of k - rem is not same then also return false because we cannot make all pairs
-        //use Objects.equal method for checking it correctly
+        //use Objects.equal method for checking it correctly -> != doesnt work correctly for large Integer numbers
         //at the end return true
         for(int x: arr) {
             int rem = ((x % k) + k) % k;
