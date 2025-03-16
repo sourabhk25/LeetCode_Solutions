@@ -1,8 +1,7 @@
 class MyQueue {
 
     private Stack<Integer> s1, s2;
-    private int front;
-
+    
     public MyQueue() {
         s1 = new Stack();
         s2 = new Stack();
