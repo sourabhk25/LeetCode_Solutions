@@ -5,10 +5,10 @@ class Solution {
 
         for(int i = 0; i < nums.length; i++) {
             int compliment = target -  nums[i];
-            if(!hmap.containsKey(nums[i])) {
-                hmap.put(compliment, i);
+            if(!hmap.containsKey(compliment)) {
+                hmap.put(nums[i], i);
             } else {                
-                return new int[]{i, hmap.get(nums[i])};
+                return new int[]{i, hmap.get(compliment)};
             }
         }
 
