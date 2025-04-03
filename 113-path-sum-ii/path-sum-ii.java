@@ -21,24 +21,44 @@ class Solution {
         return result;
     }
 
+    // private void helper(TreeNode root, int targetSum, int currSum, List<Integer> path) {
+    //     if(root == null) {
+    //         return;
+    //     }
+    //     currSum += root.val;
+    //     List<Integer> temp = new ArrayList<>(path); //create deep copy of previous path and don't touch parent path list
+    //     temp.add(root.val);
+
+    //     if(root.left == null && root.right == null) {
+    //         //leaf node so check if targetSum == currSum
+    //         if(currSum == targetSum) {
+    //             result.add(temp);
+    //         }
+    //     }
+
+    //     //traverse through left and right subtree but pass temp as a new parent path
+    //     helper(root.left, targetSum, currSum, temp);
+
+    //     helper(root.right, targetSum, currSum, temp);
+    // }
+
     private void helper(TreeNode root, int targetSum, int currSum, List<Integer> path) {
         if(root == null) {
-            return;
+            return;            
         }
+
         currSum += root.val;
-        List<Integer> temp = new ArrayList<>(path); //create deep copy of previous path and don't touch parent path list
-        temp.add(root.val);
+        path.add(root.val);
 
         if(root.left == null && root.right == null) {
-            //leaf node so check if targetSum == currSum
-            if(currSum == targetSum) {
-                result.add(temp);
+            if(targetSum == currSum) {
+                result.add(new ArrayList<>(path));
             }
         }
 
-        //traverse through left and right subtree but pass temp as a new parent path
-        helper(root.left, targetSum, currSum, temp);
+        helper(root.left, targetSum, currSum, path);
+        helper(root.right, targetSum, currSum, path);
 
-        helper(root.right, targetSum, currSum, temp);
+        path.removeLast();  //remove last element in list
     }
 }
