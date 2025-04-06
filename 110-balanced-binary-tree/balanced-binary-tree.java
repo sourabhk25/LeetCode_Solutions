@@ -14,24 +14,25 @@
  * }
  */
 class Solution {
-    //Top-down recursion - calculating height for each node and checking diff
-    private int height(TreeNode root) {
-        if(root == null) {
-            return -1;
-        }
-        return 1 + Math.max(height(root.left), height(root.right));
-    }
-
     public boolean isBalanced(TreeNode root) {
-        //Time - O(nlog n) 
-        //Space - O(n) due to n stacks
         if(root == null) {
             return true;
         }
-        if(Math.abs(height(root.left) - height(root.right)) < 2 == true  && isBalanced(root.left) && isBalanced(root.right)) {
-            return true;
-        } else {
+        int leftHt = getHeight(root.left);
+        int rightHt = getHeight(root.right);        
+
+        if(Math.abs(rightHt - leftHt) > 1) {
             return false;
         }
+
+        return isBalanced(root.left) && isBalanced(root.right);
+    }
+
+    //helper function to get height 
+    private int getHeight(TreeNode root) {
+        if(root == null) {
+            return 0;
+        }
+        return 1 + Math.max(getHeight(root.left), getHeight(root.right));
     }
 }
