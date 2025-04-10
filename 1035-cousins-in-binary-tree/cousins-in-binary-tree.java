@@ -75,8 +75,7 @@ class Solution {
         q.add(root);
         
         boolean x_found = false, y_found = false;
-        TreeNode x_parent = null, y_parent = null;
-
+        
         while(!q.isEmpty()) {
             int size = q.size();
             for(int i = 0; i< size; i++) {
