@@ -15,11 +15,6 @@ public class Solution {
         ListNode fast = head;
         boolean flag = false;   //to check if cycle is present or not
 
-        //edge case
-        if(head == null || head.next == null) { //zero nodes or single node in the list so no cycle possible.
-            return null;
-        }
-
         //fast!=null for even length and fast.next!=null for odd
         while(fast != null && fast.next != null) {
             slow = slow.next;
