@@ -114,6 +114,7 @@ class Solution {
     // }
 
     //DFS - space O(h) time O(n)
+    //global variables for level and parent of x and y
     int x_level, y_level;
     TreeNode x_parent, y_parent;
     public boolean isCousins(TreeNode root, int x, int y) {
