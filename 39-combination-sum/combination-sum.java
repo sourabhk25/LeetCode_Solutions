@@ -38,25 +38,46 @@ class Solution {
         return result;
     }
 
-    void helper(int[] candidates, int target, int i, List<Integer>path) {
-        //base case
-        if(target < 0 || i == candidates.length) {
+    // void helper(int[] candidates, int target, int i, List<Integer>path) {
+    //     //base case
+    //     if(target < 0 || i == candidates.length) {
+    //         return;
+    //     }
+
+    //     if(target == 0) {
+    //         result.add(new ArrayList<>(path));  //create deep cpy and add to result
+    //         return;
+    //     }
+
+    //     //nochoose
+    //     helper(candidates, target, i + 1, path);   //send deepcopy of path
+
+    //     //choose
+    //     path.add(candidates[i]);
+    //     helper(candidates, target - candidates[i], i, path);
+
+    //     //backtracking
+    //     path.remove(path.size() - 1);
+    // }
+
+    void helper(int[] candidates, int target, int pivot, List<Integer> path) {
+        if(target < 0) {
             return;
         }
 
         if(target == 0) {
-            result.add(new ArrayList<>(path));  //create deep cpy and add to result
+            result.add(new ArrayList<>(path));
             return;
         }
 
-        //nochoose
-        helper(candidates, target, i + 1, path);   //send deepcopy of path
-
-        //choose
-        path.add(candidates[i]);
-        helper(candidates, target - candidates[i], i, path);
-
-        //backtracking
-        path.remove(path.size() - 1);
+        for(int i = pivot; i < candidates.length; i++) {
+            //action
+            path.add(candidates[i]); //we add no at ith index not at pivot
+            //recurse
+            helper(candidates, target - candidates[i], i, path);
+            //backtrack
+            path.remove(path.size() - 1);
+        }
     }
+    
 }
