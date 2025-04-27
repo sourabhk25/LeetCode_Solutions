@@ -1,4 +1,5 @@
 class Solution {
+    // TC = O(nlogn) SC = O(n)
     public int minMeetingRooms(int[][] intervals) {
         Arrays.sort(intervals, (a,b) -> a[0] - b[0]);   //sort array based on starting time
         PriorityQueue<Integer> meetingRooms = new PriorityQueue<>((a,b) -> a - b);    //min-heap for end time of meetings
