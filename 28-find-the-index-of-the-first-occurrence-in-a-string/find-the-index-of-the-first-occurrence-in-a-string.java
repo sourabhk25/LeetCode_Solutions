@@ -22,6 +22,7 @@ class Solution {
     //     return -1;
     // }
 
+    //Robin-Karp
     public int strStr(String haystack, String needle) {
         int m = haystack.length();
         int n = needle.length();    
