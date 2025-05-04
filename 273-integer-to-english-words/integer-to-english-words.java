@@ -15,14 +15,14 @@ class Solution {
             int triplet = num % 1000;   //get last 3 digits
 
             if(triplet > 0) {   //we dont want 100 000 hence checking 3 digits greater than 0
-                result.insert(0, (helper(triplet).trim() + thousands[i])); //we need to prepend newly formed tuple string each time since we are going unit place to thousand place etc.
+                result.insert(0, (helper(triplet).trim() + thousands[i])); //we need to prepend newly formed tuple string each time since we are going unit place to thousand place etc.    //here trim is added for cases like fifty thousand etc.
             }
 
             num = num / 1000;
             i++;
         }       
 
-        return result.toString().trim();
+        return result.toString().trim();    //trim added to remove extra spaces in some testcases
     }
 
     private String helper(int num) {
